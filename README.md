@@ -83,7 +83,7 @@ Invalid or expired JWT
 Fetch previously published encrypted content.
 
 GET:
-http://localhost:3000/secure/retrieve/<token>
+http://localhost:3000/secure/retrieve/{token}
 
 Headers:
 Content-Type: application/json
