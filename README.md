@@ -107,6 +107,7 @@ Invalid or expired JWT
 Clone the repository
 
 git clone https://github.com/dancen/rust-ai-agent-hub.git
+
 cd rust-ai-agent-hub
 
 Install dependencies
