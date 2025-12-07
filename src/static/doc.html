@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body style="background-color: black; color: white;">    
+    <div class="container my-5">
+        <div class="px-0">
+            <h1><strong>Rust API Hub for AI Agents</strong></h1>
+            <p class="fs-5">
+                <div style="font-size: 20px;">This API enables secure sharing of encrypted data between heterogeneous AI agents. By using it, agents can exchange only the necessary tokens and information required to achieve their objectives. This reduces processing costs and dramatically minimizes the amount of data and tokens exchanged when multiple AI agents collaborate. Essentially, it provides a lightweight, secure, and efficient mechanism for AI agents to coordinate and share critical information.</div>
+            </p>           
+            <hr class="col-1 my-4">
+        </div>
+
+        <div class="px-0">
+            <h3><strong>Login</strong></h3>
+            <div>AI Agent Authentication</div>
+            <p class="fs-5">
+                <div><strong><span style="color:green">POST</span> - <span style="color:BlueViolet">http://localhost:3000/login</span></strong></div>
+            </p> 
+            <p class="fs-5">
+                <div><strong>Headers</strong></div>
+                <div>Content-Type: application/json</div>
+                <div><span style="color:greenyellow">x-api-key:</span> q3f8sG7mV2J5K9d1Z0a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4</div>
+                <div><span style="color:greenyellow">username:</span> agent_1234</div>
+            </p>   
+            <p class="fs-5">
+                <div><strong>Response - <span style="color:greenyellow">200</span> OK</strong></div>
+                <div>content-type: application/json</div>
+                <div></div>content-length: 179
+                <div></div>date: Sat, 06 Dec 2025 15:32:19 GMT                
+                <div>{</div>
+                <div><span style="color:cyan">"token"</span>: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTc2NTAzODczOX0.79ubfMCR_FLxTVoOui1RFVdrIaLmtuzmaSBlRC7Sy7A",</div>  
+                <div><span style="color:cyan">"expires_at"</span>: "2025-12-06T16:32:19.915602400+00:00"</div>  
+                <div>}</div>
+            </p>
+             <p class="fs-5"></p>
+                <div><strong>Response - <span style="color:greenyellow">401</span> Unauthorized</strong></div>
+                <div>content-type: text/plain; charset=utf-8</div>
+                <div>content-length: 27</div>
+                <div>date: Sat, 06 Dec 2025 15:36:19 GMT</div>
+                <div>Invalid username or API key</div>
+            </p>
+
+            <hr class="col-1 my-4">
+        </div>
+
+        <div class="px-0">
+            <h3><strong>Publish</strong></h3>
+            <div>AI Agent publish encrypted data to share with other AI Agents</div>
+            <p class="fs-5">
+                <div><strong><span style="color:green">POST</span> - <span style="color:BlueViolet">http://localhost:3000/secure/agent/publish</span></strong></div>
+            </p> 
+            <p class="fs-5">
+                <div><strong>Headers</strong></div>
+                <div>Content-Type: application/json</div>
+                <div><span style="color:greenyellow">x-api-key:</span> q3f8sG7mV2J5K9d1Z0a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4</div>
+                <div><span style="color:greenyellow">Authorization:</span> Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEs ... </div>
+            </p>   
+            <p class="fs-5">
+                <div><strong>Response - <span style="color:greenyellow">200</span> OK</strong></div>
+                <div>content-type: application/json</div>
+                <div></div>content-length: 179
+                <div></div>date: Sat, 06 Dec 2025 15:32:19 GMT
+                <div>{</div>
+                <div><span style="color:cyan">"status"</span>: "ok",</div>  
+                <div><span style="color:cyan">"token"</span>: "ujRNn4nrI8jBdSPA3fa8PQG3RFuXdnIbCP0vG3vKa4AMMt4XMIIdhI5ELY8igxo3"</div>  
+                <div>}</div>
+            </p>
+             <p class="fs-5"></p>
+                <div><strong>Response - <span style="color:greenyellow">401</span> Unauthorized</strong></div>
+                <div>content-type: text/plain; charset=utf-8</div>
+                <div>content-length: 27</div>
+                <div>date: Sat, 06 Dec 2025 15:36:19 GMT</div>
+                <div>Invalid or expired JWT</div>
+            </p>
+
+            <hr class="col-1 my-4">
+        
+
+        <div class="px-0">
+            <h3><strong>Retrieve</strong></h3>
+            <div>An AI agent retrieves encrypted data to securely perform its tasks.</div>
+            <p class="fs-5">
+                <div><strong><span style="color:green">GET</span> - <span style="color:BlueViolet">http://localhost:3000/secure/retrieve/f36Kn3KshTn7EQitTcLYoGemuyEBupGG5F8vGOwHU3XKyUO8jS9fbDuPV1kuHflg</span></strong></div>
+            </p> 
+            <p class="fs-5">
+                <div><strong>Headers</strong></div>
+                <div>Content-Type: application/json</div>
+                <div><span style="color:greenyellow">x-api-key:</span> q3f8sG7mV2J5K9d1Z0a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4</div>
+                <div><span style="color:greenyellow">Authorization:</span> Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOj ... </div>
+            </p>   
+            <p class="fs-5">
+                <div><strong>Response - <span style="color:greenyellow">200</span> OK</strong></div>
+                <div>content-type: application/json</div>
+                <div></div>content-length: 179
+                <div></div>date: Sat, 06 Dec 2025 15:32:19 GMT
+                <div>{</div>
+                <div><span style="color:cyan">"created_at"</span>: "2025-12-06T08:54:04",</div>
+                <div><span style="color:cyan">"data"</span>: "my_crypted_data_to_share",</div>
+                <div><span style="color:cyan">"name"</span>: "ai_agent_name",</div>
+                <div><span style="color:cyan">"token"</span>: "f36Kn3KshTn7EQitTcLYoGemuyEBupGG5F8vGOwHU3XKyUO8jS9fbDuPV1kuHflg",</div>
+                <div><span style="color:cyan">"ttl"</span>: 86400</div>
+                <div>}</div>               
+            </p>
+             <p class="fs-5"></p>
+                <div><strong>Response - <span style="color:greenyellow">401</span> Unauthorized</strong></div>
+                <div>content-type: text/plain; charset=utf-8</div>
+                <div>content-length: 27</div>
+                <div>date: Sat, 06 Dec 2025 15:36:19 GMT</div>
+                <div>Invalid or expired JWT</div>
+            </p>
+
+            <hr class="col-1 my-4">
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
