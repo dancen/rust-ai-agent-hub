@@ -31,6 +31,8 @@ Built with **Rust**, **Axum**, **Tokio**, and **JWT**, this API is optimized for
 - **SQLx / SQLite** (optional, depending on your use)
 - **MySQL** (optional, depending on your use)
 
+
+
 ---
 
 # 🔐 1. Login  
@@ -117,6 +119,12 @@ cargo build
 
 3. Start the server
 cargo run
+
+4. Setup the Database
+Use the SQL scripts located in the migrations/ folder to initialize your database.
+
+5. Configure Environment Variables
+Set your database connection details and JWT secret in the .env file.
 
 
 The API runs at:
