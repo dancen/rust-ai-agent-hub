@@ -1,133 +1,164 @@
-README.md — Rust API Hub for AI Agents
+🤖 Rust API Hub for AI Agents
 
-# 🤖 Rust API Hub for AI Agents  
-Secure, Lightweight & Token-Efficient Communication Between AI Agents
+Secure, Lightweight & Token-Efficient Communication Between AI Agents (Prototype)
 
-This project provides a **secure API hub** designed for collaboration between **heterogeneous AI agents**.  
+This project is a prototype of a secure API hub designed for collaboration between heterogeneous AI agents.
 Agents can authenticate, publish encrypted data, and retrieve only the information strictly required to complete their tasks — dramatically reducing token usage, bandwidth, and computation costs.
 
-Built with **Rust**, **Axum**, **Tokio**, and **JWT**, this API is optimized for speed, security, and scalability.
+Built with Rust, Axum, Tokio, and JWT, this prototype focuses on speed, security, and scalability, but there is ample room for improvements and enhancements.
 
----
+🚀 Features
 
-## 🚀 Features
+🔐 AI Agent Authentication via API Key + Username
 
-- 🔐 **AI Agent Authentication** via API Key + Username  
-- 🔑 **JWT-Based Authorization** for secure access  
-- 📡 **Encrypted Data Exchange** with one-time or reusable tokens  
-- 🪶 **Ultra-lightweight payloads** to minimize tokens exchanged  
-- ⚡ **Rust Performance** → High throughput, minimal RAM usage  
-- 🧩 **Heterogeneous Agent Support** (can be used by any LLM or agent framework)
+🔑 JWT-Based Authorization for secure access
 
----
+📡 Encrypted Data Exchange with one-time or reusable tokens
 
-## 📦 Technology Stack
+🪶 Ultra-lightweight payloads to minimize tokens exchanged
 
-- **Rust** (stable)
-- **Axum** — Web framework
-- **Tokio** — Async runtime
-- **Serde** — JSON serialization
-- **jsonwebtoken** — JWT handling
-- **SQLx / SQLite** (optional, depending on your use)
-- **MySQL** (optional, depending on your use)
+⚡ Rust Performance → High throughput, minimal RAM usage
 
+🧩 Heterogeneous Agent Support (can be used by any LLM or agent framework)
 
+⚠️ Note: This is a prototype — functionality works, but the system can be optimized and extended for production use.
 
----
+📦 Technology Stack
 
-# 🔐 1. Login  
-### Authenticate an AI agent and receive a JWT.
+Rust (stable)
 
-POST
+Axum — Web framework
+
+Tokio — Async runtime
+
+Serde — JSON serialization
+
+jsonwebtoken — JWT handling
+
+SQLx / SQLite — optional for local storage
+
+MySQL — optional for production-grade storage
+
+🔐 1. Login
+
+Authenticate an AI agent and receive a JWT.
+
+POST:
+
 http://localhost:3000/login
 
 
-Headers
+Headers:
+
 Content-Type: application/json
-x-api-key: q3f8sG7mV2J5K9d1Z0a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4
-username: agent_1234
+x-api-key: <your-api-key>
+username: <agent-username>
 
 
-### ✔️ Response — 200 OK
-```json
+Response — 200 OK
+
 {
-  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTc2NTAzODczOX0.79ubfMCR_FLxTVoOui1RFVdrIaLmtuzmaSBlRC7Sy7A",
+  "token": "<JWT_TOKEN>",
   "expires_at": "2025-12-06T16:32:19.915602400+00:00"
 }
 
-❌ Response — 401 Unauthorized
+
+Response — 401 Unauthorized
+
 Invalid username or API key
 
-
 📤 2. Publish
+
 An AI agent uploads encrypted data to share with other agents.
 
-POST
+POST:
+
 http://localhost:3000/secure/agent/publish
 
-Headers
-Content-Type: application/json
-x-api-key: ...
-Authorization: Bearer <JWT>
 
-Payload
+Headers:
+
+Content-Type: application/json
+x-api-key: <your-api-key>
+Authorization: Bearer <JWT_TOKEN>
+
+
+Payload:
+
 {
   "name": "ai_agent_name",
   "data": "crypted_data_to_share_between_ai_agents_or_services"
 }
 
-✔️ Response — 200 OK
+
+Response — 200 OK
+
 {
   "status": "ok",
-  "token": "ujRNn4nrI8jBdSPA3fa8PQG3RFuXdnIbCP0vG3vKa4AMMt4XMIIdhI5ELY8igxo3"
+  "token": "<DATA_TOKEN>"
 }
 
-❌ Response — 401 Unauthorized
+
+Response — 401 Unauthorized
+
 Invalid or expired JWT
 
-
 📥 3. Retrieve
+
 Fetch previously published encrypted content.
 
-GET
+GET:
+
 http://localhost:3000/secure/retrieve/<token>
 
-Headers
-Content-Type: application/json
-x-api-key: ...
-Authorization: Bearer <JWT>
 
-✔️ Response — 200 OK
+Headers:
+
+Content-Type: application/json
+x-api-key: <your-api-key>
+Authorization: Bearer <JWT_TOKEN>
+
+
+Response — 200 OK
+
 {
   "created_at": "2025-12-06T08:54:04",
   "data": "crypted_data_to_share_between_ai_agents_or_services",
   "name": "ai_agent_name",
-  "token": "f36Kn3KshTn7EQitTcLYoGemuyEBupGG5F8vGOwHU3XKyUO8jS9fbDuPV1kuHflg",
+  "token": "<DATA_TOKEN>",
   "ttl": 86400
 }
 
-❌ Response — 401 Unauthorized
+
+Response — 401 Unauthorized
+
 Invalid or expired JWT
 
 🔧 Running Locally
-1. Clone the repository
+
+Clone the repository
+
 git clone https://github.com/dancen/rust-ai-agent-hub.git
 cd rust-ai-agent-hub
 
-2. Install dependencies
+
+Install dependencies
+
 cargo build
 
-3. Start the server
+
+Start the server
+
 cargo run
 
-4. Setup the Database
+
+Setup the Database
 Use the SQL scripts located in the migrations/ folder to initialize your database.
 
-5. Configure Environment Variables
+Configure Environment Variables
 Set your database connection details and JWT secret in the .env file.
 
-
-The API runs at:
+API Base URL:
 
 http://localhost:3000
 
@@ -135,7 +166,7 @@ http://localhost:3000
 
 All requests require both API Key and JWT
 
-JWTs expire
+JWTs expire after a configurable period
 
 API keys should be safely stored and rotated
 
@@ -143,11 +174,15 @@ Data exchanged between agents should be encrypted by the client agent before pub
 
 📘 Use Cases
 
-✔ Multi-agent orchestration
-✔ Secure knowledge sharing between LLMs
-✔ Distributed reasoning
-✔ Token-efficient agent coordination
-✔ Agent-to-agent communication for marketplaces, workflows, and pipelines
+Multi-agent orchestration
+
+Secure knowledge sharing between LLMs
+
+Distributed reasoning
+
+Token-efficient agent coordination
+
+Agent-to-agent communication for marketplaces, workflows, and pipelines
 
 🤝 Contributing
 
